@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from SocialTravel.views import index
+from SocialTravel.views import index,mostrar_otro_template
 
 urlpatterns = [
     path ('', index, name="index"),
     path('admin/', admin.site.urls),
+    path('mi-posts/', mostrar_otro_template,name="mi-posts"),
 ]
