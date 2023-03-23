@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from SocialTravel.views import index, mostrar_post, agregar_post,buscar_post
+from SocialTravel.views import index, mostrar_post, agregar_post,buscar_post, PostList, PostDetail,PostSearch ,PostCreate, PostUpdate, PostDelete
+
 
 urlpatterns = [
     path ('', index, name="index"),
@@ -23,5 +24,10 @@ urlpatterns = [
     path('mi-posts/', mostrar_post, name="mi-posts"),
     path('mi-posts/agregar',agregar_post, name="agregar_post"),
     path('mis-posts/buscar', buscar_post, name="buscar-post"),
-    
+    path('post/list', PostList.as_view(), name="post-list"),
+    path('post/<pk>/detail', PostDetail.as_view(), name="post-detail"),
+    path('post/<pk>/update', PostUpdate.as_view(), name="post-update"),
+    path('post/<pk>/delete', PostDelete.as_view(), name="post-delete"),
+    path('post/create', PostCreate.as_view(), name="post-create"),
+    path('post/buscar', PostSearch.as_view(), name="post-search"),
 ]
