@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from SocialTravel.views import (index,mostrar_post,agregar_post,buscar_post,
                                  PostList, PostDetail,PostSearch ,PostCreate, PostUpdate,
-                                   PostDelete, Login, SignUp) 
+                                   PostDelete, Login, SignUp, Logout) 
 
 
 urlpatterns = [
@@ -34,4 +34,5 @@ urlpatterns = [
     path('post/buscar', PostSearch.as_view(), name="post-search"),
     path('login/', Login.as_view(), name="login"),
     path('signup/', SignUp.as_view(), name="signup"),
+    path('logout/', Logout.as_view(), name="logout")
 ]

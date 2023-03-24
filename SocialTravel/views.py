@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from SocialTravel.models import Post
 from django.urls import reverse_lazy
-from SocialTravel.forms import Post, PostForm
+from SocialTravel.forms import PostForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
   return render(request, "SocialTravel/index.html")
@@ -43,20 +44,20 @@ class PostDetail(DetailView):
     model = Post
     context_object_name= "post"
 
-class PostDelete(DeleteView):
+class PostDelete(LoginRequiredMixin,DeleteView):
     model = Post
     context_object_name= "post"
     success_url = reverse_lazy("post-list")
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin,CreateView):
     model = Post
     success_url = reverse_lazy("post-list")
-    fields = '__all__'
+    fields = "__all__"
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin,UpdateView):
     model = Post
     success_url = reverse_lazy("post-list")
-    fields = '__all__'
+    fields = "__all__"
 
 class PostSearch(ListView):
     model = Post
@@ -82,6 +83,9 @@ class SignUp(FormView):
     form_class = UserCreationForm
     template_name = "registration/signup.html"
     success_url = reverse_lazy("post-list")
+
+class Logout(LogoutView):
+    next_page = reverse_lazy("index")
 
 
 
