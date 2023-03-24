@@ -1,0 +1,16 @@
+{%extends "SocialTravel/base.html"%} 
+
+{%load static%} 
+
+{%block main%}
+
+<h1>Hola esto es un template con herencia!!!!!</h1>
+
+<ul>
+    {%for post in posts%} 
+    <li> {{post.id}} - {{post.heading}} </li>
+    {%endfor%}
+</ul>
+
+{%endblock%} 
+

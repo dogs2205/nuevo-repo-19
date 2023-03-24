@@ -1,0 +1,17 @@
+{%extends "SocialTravel/base.html"%} 
+
+{%load static%} 
+
+{%block main%}
+
+<ul>
+    {% for post in posts %} 
+    
+    <li> {{post.id}} - {{post.heading}} -{{ post.heading}}  </li>
+    <a href="{% url 'post-detail' post.id %}">Detalle</a>
+    <a href="{% url 'post-update' post.id %}">Actualizar</a>
+    <a href="{% url 'post-delete' post.id %}">Borrar</a>
+    {%endfor%}
+</ul>
+
+{%endblock%} 
