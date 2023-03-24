@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from SocialTravel.views import index, mostrar_post, agregar_post,buscar_post, PostList, PostDetail,PostSearch ,PostCreate, PostUpdate, PostDelete
+from SocialTravel.views import (index,mostrar_post,agregar_post,buscar_post,
+                                 PostList, PostDetail,PostSearch ,PostCreate, PostUpdate,
+                                   PostDelete, Login, SignUp) 
 
 
 urlpatterns = [
@@ -30,4 +32,6 @@ urlpatterns = [
     path('post/<pk>/delete', PostDelete.as_view(), name="post-delete"),
     path('post/create', PostCreate.as_view(), name="post-create"),
     path('post/buscar', PostSearch.as_view(), name="post-search"),
+    path('login/', Login.as_view(), name="login"),
+    path('signup/', SignUp.as_view(), name="signup"),
 ]
